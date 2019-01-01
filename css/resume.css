@@ -1,0 +1,61 @@
+/*/ Thumbnail images on all pages */
+.card-img-top, .mr-3 {
+	width: 200px;
+	height: 200px;
+	margin: auto;
+	margin-top: 15px;
+
+
+.card-title {
+	text-align: center;
+}
+
+nav {
+	margin-top: 1px;
+}
+
+/* Main header background on all pages*/
+
+.jumbotron {
+	margin-bottom: 1px;
+}
+
+.card-group {
+	
+}
+
+/* index pic sizes & form width for contact*/
+
+ h2 { 
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 1000px;
+	font-size: 20;
+	font-style: strong;
+	font-color: blue;
+}
+
+h4 {
+	font-style: strong;
+	font-size: 25;
+	
+.btn btn {
+	margin-left: 20px;
+}
+
+
+.media {
+	margin-top: 20px;
+	margin-left: 20px;
+	
+}
+/* Resume pics size*/
+h3 {
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 1000px;
+	font-size: 15;
+	font-style: strong;
+	font-color: blue;
+}
+
