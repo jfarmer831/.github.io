@@ -4,11 +4,6 @@ body {
 	text-align: center;
 }
 
-.jumbotron jumbotron-fluid {
-	
-	
-}
-
 .alert alert-warning alert-dismissible fade show, .close {
 	background-color: red;
 }
@@ -17,50 +12,54 @@ body {
 .jumbotron {
 	margin-bottom: 1px;
 }
-
-.card-img-top, h3 {
-	width: 250px;
-	height: 250px;
-	padding: 20px;
-	margin-top: 20px;
-	text-align: center;
-	
-}
-
 .nav-link {
 	margin-top: auto;
-	text-align: line-through
-
 }
 
-.card-group {
-	width: 1000px;
-	margin: auto
-}
 
-/* index pic sizes & form width for contact*/
-
-.form-group, h2, { 
+.form-group, h2 { 
 	margin-top: 20px;
 	margin-left: 20px;
 	width: 1000px;
 	font-size: 20;
 	font-style: strong;
-	font-color: blue;
+	color: blue;
 }
 
 .btn btn {
 	margin-left: 20px;
 }
-
-
+.bordered-container {
+	display: inline-block;
+	width: 70%;
+	height: 20%;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+	padding: 1%; 
+	margin: 1%;
+	text-align: left;	
+}
+.worksample {
+	display: inline-block;
+	margin: 2%;
+	color: gray;
+	text-align: center;
+}
+#example-summary {
+	margin: 3%;
+	text-align: center;
+}
+.list {
+	text-align: justify;
+	margin: auto;
+	padding-left: 40px;	
+	color: black;
+}
 .media {
 	margin-top: 20px;
 	margin-left: 20px;
-	
 }
-
-
 
 @media screen and (max-width: 600px) {
   .column {
@@ -68,10 +67,3 @@ body {
   }
 }
 
-.list {
-	text-align: justify;
-	margin: auto;
-	padding-left: 40px;
-	
-	
-}
