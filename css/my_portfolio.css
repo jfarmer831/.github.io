@@ -2,6 +2,12 @@
 /* Thumbnail images on all pages padding makes img smaller*/
 body {
 	text-align: center;
+	background-color: black;
+	
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;	
 }
 
 .alert alert-warning alert-dismissible fade show, .close {
@@ -10,10 +16,31 @@ body {
 /* Main header background on all pages*/
 
 .jumbotron {
-	margin-bottom: 1px;
+	height: 4%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;	
+	margin-bottom: 1%;
+}
+table {
+	font-family: arial, sans-serif;
+	color: rgb(6, 17, 17);
+	border-collapse: collapse;
+	width: 100%;
+}
+  
+  td, th {
+	text-align: center;
+	padding: 8px;
 }
 .nav-link {
 	margin-top: auto;
+	color: purple;
+}
+.nav-link:hover {
+	background-color: pink;
+	color: purple;
 }
 
 
@@ -29,10 +56,21 @@ body {
 .btn btn {
 	margin-left: 20px;
 }
-.bordered-container {
+.img-container {
+	display: inline;
+}
+.img-size {
+	width: 20%;
+	height: 20%;
+	margin: 1%;
+	text-align: left;
+	background-color: black;
+	margin-bottom: 5%;	
+}
+.full-container {
 	display: inline-block;
 	width: 70%;
-	height: 20%;
+	height: 100%;
 	border-style: solid;
 	border-color: black;
 	border-width: 3px;
@@ -47,6 +85,7 @@ body {
 	text-align: center;
 }
 #example-summary {
+	display: inline-block;
 	margin: 3%;
 	text-align: center;
 }

@@ -1,0 +1,503 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/examples.css">
+    <title>Jerusalem Farmer's Portfolio!</title>
+  </head>
+  <body>
+  <!--START NAV BAR------>
+<nav class="navbar navbar-light" style="background-color: lightseagreen;">
+  <ul class="nav">
+ <li class="nav-item">
+    <a class="nav-link" style="color: #fff;" href="index.html">Home</a>
+  </li>
+ <li class="nav-item">
+    <a class="nav-link" style="color: #fff;" href="Aboutme.html">About Me</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" style="color: #fff;" href="https://www.github.com/jfarmer831/">GitHub</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" style="color: #fff;" href="https://www.linkedin.com/in/jerusalemfarmer/">LinkedIn</a>
+      </li>
+</ul>
+</nav>
+ <!--END JUMBOTRON-----> 
+<h2 class="container" style="margin-top: 8%; margin-bottom: 5%;">Project Samples</h2>
+<h5 id="example-summary">SQL STORED PROCEDURE</h5>
+  <p class="container">This procedure shows the correlation between employees who get less than 30 hours 
+    of vacation annually with their year over year sales goals. </p>
+<div class="full-container">
+  <figure>
+  <pre> 
+    <code>
+        CREATE PROCEDURE  min_vacation_sales
+        AS
+        BEGIN	
+          SELECT Sales.SalesTerritory.Name, HumanResources.Employee.VacationHours, Sales.SalesPerson.SalesQuota, Sales.SalesTerritory.SalesLastYear, Sales.SalesTerritory.SalesYTD 
+          FROM Sales.SalesPerson
+          INNER JOIN Sales.SalesTerritory
+          ON Sales.SalesTerritory.TerritoryID = Sales.SalesPerson.TerritoryID
+          INNER JOIN HumanResources.Employee
+          ON
+          Sales.SalesPerson.BusinessEntityID = HumanResources.Employee.BusinessEntityID
+          WHERE Sales.SalesTerritory.SalesYTD <= Sales.SalesTerritory.SalesLastYear
+          AND HumanResources.Employee.VacationHours < 30;
+        END
+        GO
+        
+        EXEC [dbo].[min_vacation_sales];
+    </code>
+  </pre>
+</figure>
+</div>
+<br><h5 id="example-summary">HTML & CSS  </h5>
+  <p class="container">Created with support from Bootstrap. Made for the Portland, Oregon based 
+    nonprofit, "Why I Rock". Learn more about their mission on the full website at <a href="http://www.whyirock.org">WhyiRock.org</a> (launching soon).
+  </p>
+<img href="http://www.whyirock.org" src="images/WhyiRock .jpg" class="full-container" ></a>
+<h5 id="example-summary"> Web scraping application created using Django, Python and Beautifulsoup </h5>
+  <p class="container">Used Beautifulsoup to scrape www.theverge.com for the top three feature articles with photos and 
+  titles as a hyperlink back to article origin. The scraped information is passed to a simple html 
+  template in a “for” statement to display as a list in the browser.</p>
+<div class="full-container">
+<figure>
+  <pre>
+  <code>
+  VIEWS
+    class NewsScraper:
+  
+      def __init__ (self):     
+          content = requests.get('https://www.theverge.com/features').content
+          soup = bs(content, 'html.parser')
+          articles = soup.find_all('div', class_='c-compact-river__entry' ) # overall div class for articles
+          title_list = [] # list to iterate in below for loop.
+          url_list = []
+          img_list = []
+          
+          for index in range(0,3): # for top 3 articles list the following
+  
+              title_list.append(articles[index].h2.get_text())
+              url_list.append(articles[index].a['href'])
+              img_list.append(articles[index].noscript.img['src'])
+      
+          all_list = zip(title_list, url_list, img_list) #group iterations through zip function
+          self.all_list = all_list    
+    </code>
+  </pre>
+</figure>
+</div>
+<h5 id="example-summary">Graphical User Interface(GUI) with SELECT directory and move file functionality</h5>
+  <p class="container">This script creates a GUI with a button widget and a text widget. It has the ability to select 
+      a folder directory from the system. The script uses the askdirectory() method from the Tkinter module. A button 
+      widget takes the user’s selected file path retained by the askdirectory() method 
+      and prints it within the text widget.
+
+  </p>
+
+  <div class="full-container">
+  <figure>
+    <pre>
+      <img class="" src="images/tkanter.png">
+    <code>
+        Python Ver:   3.7.0
+      
+        import os
+        from tkinter import *
+        import tkinter as tk
+        from tkinter.filedialog import askdirectory
+        import sqlite3
+        import shutil
+        from datetime import datetime
+        
+                            
+        def movefile(self):
+                srcdirect = os.listdir(self.source_path.get())
+                src = self.source_path.get()
+                for file in srcdirect:
+                    if file.endswith('txt'):
+                        shutil.move(file, self.dest_path.get())
+                       
+        
+        def sqldata():
+                conn = sqlite3.connect('txtfile.db')
+                with conn:
+                    cur = conn.cursor()
+                    cur.execute("CREATE TABLE IF NOT EXISTS tbl_directory (ID INTEGER PRIMARY KEY AUTOINCREMENT, col_filename VARCHAR(75), col_date_time VARCHAR(75))")
+                conn.commit()
+                conn.close()
+            
+        
+        class ParentWindow(Frame):
+            def __init__ (self, master, *args, **kwargs):
+                Frame.__init__ (self, master, *args, **kwargs)
+        
+                self.master = master
+                self.master.resizable(width=True, height=True)
+                self.master.geometry('{}x{}'.format(450, 350))
+                self.master.title('Print Txt')
+                self.master.config(bg='pink')
+                #self.master.protocol("WM_DELETE_WINDOW"), self.ask_quit)
+                arg = self.master
+        
+                self.source_path = StringVar()
+                self.dest_path = StringVar()
+        
+                #FILE NAME DISPLAY LABEL 1
+                self.lblsearch = tk.Label(self.master, text='Folder Path:', font=("Helvetica", 12), fg='purple', bg='pink')
+                self.lblsearch.grid(row=1, column=1, columnspan=2, padx=(30,0), pady=(10,0), sticky=W)
+                       
+                #FILE NAME DISPLAY TEXT BOX 1 SOURCE
+                self.txtSourceDir = Entry(self.master, width=40, font=("Helvetica", 12), fg='black', bg='white')
+                self.txtSourceDir.grid(row=2, column=1, padx=(30,0), pady=(0,20), sticky=W)
+        
+                #FILE NAME DISPLAY LABEL 2
+                self.lblsearch = tk.Label(self.master, text='Folder Path:', font=("Helvetica", 12), fg='purple', bg='pink')
+                self.lblsearch.grid(row=3, column=1, columnspan=2, padx=(30,0), pady=(20,10), sticky=W)
+                       
+                #FILE NAME DISPLAY TEXT BOX 2
+                self.txtDestDir = Entry(self.master, width=40, font=("Helvetica", 12), fg='black', bg='white')
+                self.txtDestDir.grid(row=4, column=1, padx=(30,0), pady=(15,2), sticky=W)
+        
+                #SEARCH BUTTON 1
+                self.btnSourceDir = tk.Button(self.master, text='Source Directory...', width=18, height=2, command=self.sourceDir, font=("Helvetica", 10), fg='white', bg='purple')
+                self.btnSourceDir.grid(row=2, column=1, padx=(30,0), pady=(60,0), sticky=W) 
+                
+                #SEARCH BUTTON 2
+                self.btnDestDir = tk.Button(self.master, text='Destination Directory...', width=18, height=2, command=self.destDir, font=("Helvetica", 10), fg='white', bg='purple')
+                self.btnDestDir.grid(row=6, column=1, padx=(30,0), pady=(30,0), sticky=W)   
+                
+                #Iterate Button
+                self.btnSearchTxt = tk.Button(self.master, text='Search .txt files...', width=18, height=2, command=self.input_file, font=("Helvetica", 10), fg='white', bg='purple')
+                self.btnSearchTxt.grid(row=6, column=1, padx=(250,0), pady=(30,0), sticky=W)  
+        
+                
+                #FUNCTIONS
+                #FIRST TEXT FIELD
+        
+            def sourceDir(self):
+                Sdirect = askdirectory()
+                print(self.txtSourceDir.insert(0,Sdirect))#prints to named text field
+                self.source_path.set(Sdirect)
+                
+        
+            #SECOND TEXT FIELD
+            def destDir(self):
+                direct = askdirectory()
+                print(self.txtDestDir.insert(0,direct)) 
+                self.dest_path.set(direct)
+                     
+        
+            def input_file(self):
+                src = self.source_path.get()
+                dest = self.dest_path.get()
+                conn = sqlite3.connect('txtfile.db')
+                with conn:
+                    cur = conn.cursor()
+                    srcdirect = os.listdir(src)
+                    for file in srcdirect:
+                        if file.endswith('txt'):
+                                timeMod = datetime.fromtimestamp(os.path.getmtime(src +'/' + file))
+                                print(timeMod)
+                                cur.execute("INSERT INTO tbl_directory (col_filename, col_date_time) VALUES (?,?);", (file, timeMod))
+                                print(file)
+                                conn.commit()
+                conn.close()
+                movefile(self)
+                #printmtime(self)
+                
+            
+            def ask_quit(self):
+                self.master.destroy()
+                os._exit(0) # deletes from memory so it does not store on users computer
+          
+        
+                
+        
+        
+        if __name__ == "__main__":
+            sqldata()
+            root = Tk()
+            App = ParentWindow(root)
+            root.mainloop()
+           
+        
+  </code>
+  </pre>
+  </figure>
+</div>
+<br><h5 id="example-summary">JavaScript</h5>
+  <p class="container"> The following Javascript code is for a pizza ordering website. user selects pizza
+    options selects total and a reciept with ordered items and total shows on the same page below the 
+    pizza options.
+  </p><div class="full-container">
+  
+  <figure>
+    <pre>
+      <code>
+          function getTotal() {
+            var text1 = "";
+            var text2 = "";
+            var runningTotal = 0;
+            var sizeTotal = 0;
+            var sizeArray = document.getElementsByName('pizzasize');
+            for (var i = 0; i < sizeArray.length; i++) {
+              if (sizeArray[i].checked) {
+                var selectedSize = sizeArray[i].value;
+                text1 = text1+selectedSize+"<br>";
+              }
+            }
+            if (selectedSize === "Personal Pizza") {
+              sizeTotal = 6;
+            } else if (selectedSize === "Medium Pizza") {
+              sizeTotal = 10;
+            } else if (selectedSize === "Large Pizza") {
+              sizeTotal = 14;
+            } else if (selectedSize === "Extra Large Pizza") {
+              sizeTotal = 16;
+            }
+            
+            runningTotal = sizeTotal;
+            text2 = text2+"$"+sizeTotal+"<br>";
+            getMeat(runningTotal,text1,text2); 
+          };
+          
+          function getMeat(runningTotal,text1,text2) {
+            var meatTotal = 0;
+            var selectedMeat = [];
+            var meatArray = document.getElementsByName("meatchoice");
+            for (var j = 0; j < meatArray.length; j++) {
+              if (meatArray[j].checked) {
+                selectedMeat.push(meatArray[j].value);
+              }
+            }
+            var meatCount = selectedMeat.length;
+            if (meatCount > 1) {
+              meatTotal = (meatCount - 1);
+            } else {
+              meatTotal = 0;
+              
+            }
+            runningTotal = (runningTotal + meatTotal);
+            for (var j = 0; j < selectedMeat.length; j++) {
+                text1 = text1+selectedMeat[j]+"<br>";
+                if (meatCount <= 1) {
+                  text2 = text2 +"$"+ 0 + "<br>";
+                  meatCount = meatCount - 1;
+                } else if (meatCount == 2) {
+                  text2 = text2 +"$"+1 + "<br>";
+                  meatCount = meatCount - 1;
+                } else {
+                  text2 = text2 +"$"+1 + "<br>";
+                  meatCount = meatCount - 1;
+                }
+            }
+            getVeggie(runningTotal,text1,text2);
+          };		
+          
+          function getVeggie(runningTotal,text1,text2) {
+            var veggieTotal = 0;
+            var selectedVeggie = [];
+            var veggieArray = document.getElementsByName("veggiechoice");
+            for (var k = 0; k < veggieArray.length; k++) {
+              if (veggieArray[k].checked) {
+                selectedVeggie.push(veggieArray[k].value);
+              }
+            }
+            var veggieCount = selectedVeggie.length;
+            if (veggieCount > 1) {
+              veggieTotal = (veggieCount - 1);
+            } else {
+              veggieTotal = 0;
+            }
+            runningTotal = (runningTotal + veggieTotal);
+            for (var j = 0; j < selectedVeggie.length; j++) {
+                text1 = text1+selectedVeggie[j]+"<br>";
+                if (veggieCount <= 1) {
+                  text2 = text2 +"$"+0 + "<br>";
+                  veggieCount = veggieCount - 1;
+                } else if (veggieCount == 2) {
+                  text2 = text2 +"$"+1 + "<br>";
+                  veggieCount = veggieCount - 1;
+                } else {
+                  text2 = text2 +"$"+1 + "<br>";
+                  veggieCount = veggieCount - 1;
+                }
+            }
+            
+            getCheese(runningTotal,text1,text2);
+          
+          };		
+          
+          function getCheese(runningTotal,text1,text2) {
+            var cheeseTotal = 0;
+            var selectedCheese = [];
+            var cheeseArray = document.getElementsByName('cheesechoice');
+              for (var i = 0; i < cheeseArray.length; i++) {
+                if (cheeseArray[i].checked) {
+                  selectedCheese = cheeseArray[i].value;
+                }
+              }
+            if (cheeseArray[2].checked) {
+              cheeseTotal = 3;
+            } 
+            text2 = text2+"$"+cheeseTotal+"<br>";
+            text1 = text1+selectedCheese+"<br>";
+            runningTotal = runningTotal +cheeseTotal;
+            getSauce(runningTotal,text1,text2);
+          };
+          
+          function getSauce(runningTotal,text1,text2) {
+            var sauceArray = document.getElementsByName('saucechoice');
+            for (var i = 0; i < sauceArray.length; i++) {
+              if (sauceArray[i].checked) {
+                var selectedSize = sauceArray[i].value;
+                text1 = text1+selectedSize+"<br>";
+              }
+            }
+              text2 = text2 + "$" + 0 + "<br>";
+              getCrust(runningTotal,text1,text2);
+          };
+          
+          function getCrust(runningTotal,text1,text2) {
+            var crustTotal = 0;
+            var crustArray = document.getElementsByName('crustchoice');
+            for (var i = 0; i < crustArray.length; i++) {
+              if (crustArray[i].checked) {
+                var selectedCrust = crustArray[i].value;
+                text1 = text1+selectedCrust+"<br>";
+              }
+            }
+            if (crustArray[2].checked) {
+              crustTotal = 3;
+              text2 = text2+"$"+crustTotal+"<br>";
+            } else if (crustArray[0].checked) {
+              crustTotal = 0;
+              text2 = text2+"$"+crustTotal+"<br>";
+            } else if (crustArray[1].checked) {
+              crustTotal = 0;
+              text2 = text2+"$"+crustTotal+"<br>";
+            } else if (crustArray[3].checked) {
+              crustTotal = 0;
+              text2 = text2+"$"+crustTotal+"<br>";
+            } else if (crustArray[4].checked) {
+              crustTotal = 0;	
+              text2 = text2+"$"+crustTotal+"<br>";
+            }
+          
+            runningTotal = (runningTotal + crustTotal);
+          
+          
+            document.getElementById("cart").style.opacity=1;
+            document.getElementById("showtext1").innerHTML=text1;
+            document.getElementById("showtext2").innerHTML=text2;
+            document.getElementById("totalPrice").innerHTML = "</h3>Total Price  $"+runningTotal+".00"+"</h3>";
+          };	
+            
+      </code>
+    </pre>
+  </figure>
+</div>
+<h5 id="example-summary">Message Application in Django using Python</h5>
+<p class="container">The message application takes in user input from an HTML template and imports 
+    into the database  in the “MessageMod” table. Messages are received in the 
+    recipient user inbox as an ordered hyperlink list. Clicking the link takes 
+    the user to another html template to view message content.</p>
+<div class="full-container">
+  <figure>
+    <pre>
+      <code>
+         
+          MODELS
+          from django.db import models
+          from django.contrib.auth.models import User
+          
+          class MessageMod(models.Model):
+              sender = models.ForeignKey(User, related_name="sender", on_delete=models.CASCADE)
+              reciever = models.ForeignKey(User, related_name="reciever", on_delete=models.CASCADE)
+              msg_sub = models.CharField(max_length=100, default='')
+              msg_content = models.TextField()
+              datesent = models.DateTimeField(auto_now_add=True)
+          
+          
+          URLS
+          from django.urls import path
+          from . import views
+          
+          urlpatterns = [
+              path('message', views.message, name='message'),
+              path('inbox', views.inbox, name='inbox'),
+              path('alert', views.inboxAlert, name='alert'),
+              path('<int:id>', views.inboxMessages, name='inbox-messages')
+          ]
+          
+          
+          VIEWS
+          
+          from django.shortcuts import render
+          from .models import MessageMod 
+          from django.contrib.auth.models import User
+          from django.http import HttpRequest, HttpResponse
+          
+          
+          def message(request):
+            
+              if request.method == 'POST':
+          
+                  subject = request.POST['subject'] # define where on template text will come from 
+                  content = request.POST['content']
+                  reciever = request.POST['reciever']
+                  sender = request.POST['sender']
+              
+                  reciever_used = User.objects.get(username=reciever) # gets User object from  database based on input 'reciever'
+                  sender_used = User.objects.get(username=sender) # gets User object from database based on input 'sender'
+                  
+                  message = MessageMod() # create  an object that will interact with database item MessageMod in models
+                  message.msg_content = content #based on object define the above variables to associate with table rows in models
+                  message.msg_sub = subject
+                  message.msg_content = content
+                  message.reciever = reciever_used
+                  message.sender = sender_used
+                  message.save() 
+          
+                  return render(request, 'MessageApp/message.html', {'message': message})
+          
+              else:
+                  return render(request,"MessageApp/message.html", {})
+          
+          def inbox(request):
+              if request.user.is_authenticated:
+                  currentUser = request.user.id
+                  messages = MessageMod.objects.filter(reciever_id=currentUser)
+                  return render(request, 'MessageApp/inbox.html', {'messages': messages})
+              
+              else:
+                  return render(request, "MessageApp/inbox.html", {})
+          
+          def inboxMessages(request, id):
+              currentUser = request.user.id
+              messages = MessageMod.objects.filter(reciever_id=currentUser)
+              return render(request, "MessageApp/inbox-messages.html", {'messages': messages} )
+      </code>
+    </pre>
+  </figure>
+</div>
+<!-- Generated markup by the plugin -->
+
+
+ <!--TOOL TIP END-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>
