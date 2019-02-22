@@ -16,24 +16,14 @@ body {
 /* Main header background on all pages*/
 
 .jumbotron {
-	height: 4%;
+	background-color: lightseagreen;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;	
 	margin-bottom: 1%;
 }
-table {
-	font-family: arial, sans-serif;
-	color: rgb(6, 17, 17);
-	border-collapse: collapse;
-	width: 100%;
-}
-  
-  td, th {
-	text-align: center;
-	padding: 8px;
-}
+
 .nav-link {
 	margin-top: auto;
 	color: purple;
@@ -60,8 +50,6 @@ table {
 	display: inline;
 }
 .img-size {
-	width: 20%;
-	height: 20%;
 	margin: 1%;
 	text-align: left;
 	background-color: black;
