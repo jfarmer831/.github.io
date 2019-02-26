@@ -2,7 +2,7 @@
 /* Thumbnail images on all pages padding makes img smaller*/
 body {
 	text-align: center;
-	background-color: black;
+	background-color: white;
 	
 	background-position: center;
 	background-repeat: no-repeat;
@@ -22,6 +22,7 @@ body {
 	background-size: cover;
 	position: relative;	
 	margin-bottom: 1%;
+	
 }
 
 .nav-link {
@@ -57,7 +58,7 @@ body {
 }
 .full-container {
 	display: inline-block;
-	width: 70%;
+	width: 95%;
 	height: 100%;
 	border-style: solid;
 	border-color: black;
